@@ -7,7 +7,7 @@ class Solution {
         }
         for(int[] edge : prerequisites)
         {
-            adj.get(edge[0]).add(edge[1]);
+            adj.get(edge[1]).add(edge[0]);
         }
         int[] indgree = new int[numCourses];
         for(int i=0;i<numCourses;i++)
