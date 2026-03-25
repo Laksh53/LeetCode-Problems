@@ -1,46 +1,46 @@
 class Solution {
-    public boolean canFinish(int V, int[][] edges) {
-         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        for(int i = 0;i < V;i++)
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+ ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for(int i=0;i<numCourses;i++)
         {
             adj.add(new ArrayList<>());
         }
-        for(int[] edge : edges)
+        for(int[] edge : prerequisites)
         {
-            adj.get(edge[1]).add(edge[0]);
+            adj.get(edge[0]).add(edge[1]);
         }
-        int[] indegree = new int[V];
-        for(int i = 0;i < V;i++)
+        int[] indgree = new int[numCourses];
+        for(int i=0;i<numCourses;i++)
         {
             for(int n : adj.get(i))
             {
-                indegree[n]++;
+                indgree[n]++;
             }
         }
         Queue<Integer> q = new LinkedList<>();
-        for(int i = 0;i < V;i++)
+        for(int i=0;i<numCourses;i++)
         {
-            if(indegree[i] == 0)
+            if(indgree[i] == 0)
             {
                 q.add(i);
             }
         }
-        int count = 0;
         ArrayList<Integer> res = new ArrayList<>();
+        int count = 0;
         while(!q.isEmpty())
         {
             int vertex = q.poll();
-            count++;
             res.add(vertex);
             for(int nei : adj.get(vertex))
             {
-                indegree[nei]--;
-                if(indegree[nei] == 0)
+                indgree[nei]--;
+                if(indgree[nei] == 0)
                 {
                     q.add(nei);
                 }
             }
+            count++;
         }
-        return count == V;
+        return count == numCourses;
     }
 }
