@@ -1,6 +1,6 @@
 class Solution {
-    public int [] findOrder(int numCourses, int[][] prerequisites) {
- ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         for(int i=0;i<numCourses;i++)
         {
             adj.add(new ArrayList<>());
